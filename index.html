@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head> 
@@ -10,75 +10,64 @@
 	<h1>Hello World
 	</h1>
 
-<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable">
-		<thead>
-			<tr>
-				<th class="nosort"><h3>ID</h3></th>
-				<th><h3>Name</h3></th>
-				<th><h3>Phone</h3></th>
-				<th><h3>Email</h3></th>
-				<th><h3>Zip</h3></th>
-				<th><h3>Birthdate</h3></th>
-				<th><h3>Last Access</h3></th>
-				<th><h3>Rating</h3></th>
-				<th><h3>Done</h3></th>
-				<th><h3>Salary</h3></th>
-				<th><h3>Score</h3></th>
-			</tr>
-		</thead>
-        <tbody>
-			<tr>
-				<td>1</td>
-				<td>Ezekiel Hart</td>
-				<td>(627) 536-4760</td>
-				<td><a href="mailto:#">tortor@est.ca</a></td>
-				<td>53082</td>
-				<td>12/02/1962</td>
-				<td>March 26, 2009</td>
-				<td>-7</td>
-				<td>7%</td>
-				<td>$73,229</td>
-				<td>6.9</td>
-			</tr>
-	.........
-		</tbody>
-  </table>
+<table class="spc" border="0" cellspacing="2" cellpadding="2" width="98%">
+          <tr>
+            <td class="thd" onclick="sort(this)" title="Нажмите на заголовок, чтобы отсортировать колонку">Свойство</td>
+            <td class="thd" onclick="sort(this)" title="Нажмите на заголовок, чтобы отсортировать колонку">Изменяемое</td>
+            <td class="thd" title="Нажмите на заголовок, чтобы отсортировать колонку">Модель</td>
+            <td class="thd" onclick="sort(this)" title="Нажмите на заголовок, чтобы отсортировать колонку">Описание</td>
+          </tr>
+          <tr>
+            <td>attributes</td>
+            <td>Нет</td>
+            <td>DOM 1</td>
+            <td>Атрибуты узла.</td>
+          </tr>
+          ...
+</table>
 
-<div id="controls">
-		<div id="perpage">
-			<select onchange="sorter.size(this.value)">
-			<option value="5">5</option>
-				<option value="10" selected="selected">10</option>
-				<option value="20">20</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-			</select>
-			<span>Entries Per Page</span>
-		</div>
-		<div id="navigation">
-			<img src="images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
-			<img src="images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
-			<img src="images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
-			<img src="images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
-		</div>
-		<div id="text">Displaying Page <span id="currentpage"></span> of <span id="pagelimit"></span></div>
-	</div>
+function sort(el) {	
+   var col_sort = el.innerHTML; 
+   var tr = el.parentNode;
+   var table = tr.parentNode;    
+   var td, arrow, col_sort_num;
+   
+	for (var i=0; (td = tr.getElementsByTagName("td").item(i)); i++) {
+   	if (td.innerHTML == col_sort) {
+            col_sort_num = i; 
+            if (td.prevsort == "y"){
+                arrow = td.firstChild;
+                el.up = Number(!el.up);
+            }else{
+                td.prevsort = "y";
+                arrow = td.insertBefore(document.createElement("span"),td.firstChild);
+                el.up = 0;
+            }
+            arrow.innerHTML = el.up?"↑ ":"↓ ";
+        }else{
+            if (td.prevsort == "y"){
+                td.prevsort = "n";
+                if (td.firstChild) td.removeChild(td.firstChild);
+            }
+        }
+    }
+	 
+	 var a = new Array();
+	 
+    for(i=1; i < table.rows.length; i++) {
+	 	a[i-1] = new Array();
+	 	a[i-1][0]=table.rows[i].getElementsByTagName("td").item(col_sort_num).innerHTML;
+		a[i-1][1]=table.rows[i];
+	 }
+	 
+	 a.sort();
+	 if(el.up) a.reverse();	 
+	 
+	 for(i=0; i < a.length; i++)
+	 table.appendChild(a[i][1]);
+}
 
-<script type="text/javascript" src="script.js"></script>
-<script type="text/javascript">
-var sorter = new TINY.table.sorter("sorter");
-sorter.head = "head";
-sorter.asc = "asc";
-sorter.desc = "desc";
-sorter.even = "evenrow";
-sorter.odd = "oddrow";
-sorter.evensel = "evenselected";
-sorter.oddsel = "oddselected";
-sorter.paginate = true;
-sorter.currentid = "currentpage";
-sorter.limitid = "pagelimit";
-sorter.init("table",1);
-</script>
+
 
 
 	<p>I'm hosted with GitHub Pages.

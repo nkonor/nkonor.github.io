@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Project #1</title>
+        <link rel="stylesheet" type="text/css" href="">
+        <nav> <center>ГЛАВНАЯ | <strong>БАЗА</strong> | НОВОСТИ | НЕ ГЛАВНАЯ</center>
+	<p>
+        </nav>
+</head>
+
+<body>
+
+<fieldset>
+<legend>Настрой свои фильтры!</legend>
+<P>
+
+<fieldset>
+<legend>Фильтры на тип продукта</legend>
+<label> Фильтр t 
+<input type="checkbox" name="t" onclick="refreshTable(1)">
+</label>
+<label> Фильтр v 
+<input type="checkbox" name="v" onclick="refreshTable(1)">
+</label>
+<label> Фильтр a 
+<input type="checkbox" name="a" onclick="refreshTable(1)">
+</label>
+<label> Фильтр c 
+<input type="checkbox" name="c" onclick="refreshTable(1)">
+</label>
+<label> Фильтр il 
+<input type="checkbox" name="il" onclick="refreshTable(1)">
+</label>
+<label> Фильтр ih 
+<input type="checkbox" name="ih" onclick="refreshTable(1)">
+</label>
+<label> Фильтр g 
+<input type="checkbox" name="g" onclick="refreshTable(1)">
+</label>
+</fieldset>
+<p>
+
+<fieldset>
+<legend>Фильтры на планость/бесплатность продукта</legend>
+<label> Фильтр f (free) 
+<input type="checkbox" name="f" onclick="refreshTable(5)">
+</label>
+<label> Фильтр po (pay) 
+<input type="checkbox" name="po" onclick="refreshTable(5)">
+</label>
+<label> Фильтр ps (pay) 
+<input type="checkbox" name="ps" onclick="refreshTable(5)">
+</label>
+<label> Фильтр pf (pay) 
+<input type="checkbox" name="pf" onclick="refreshTable(5)">
+</label>
+<label> Фильтр pd (pay) 
+<input type="checkbox" name="pd" onclick="refreshTable(5)">
+</label>
+</fieldset>
+</fieldset>
+<p>
+<!-- Загружаем файл с отформатированным массивом данных _data -->
+<script src="VBR.js">
+</script>
+
+<table id="table0"><tr></tr></table>
+
+<!-- Загружаем файл с функциями для обработки массива данных _data -->
+<script src="functions.js">
+</script>
+
+<script type="text/javascript">
+
+/*Запускаем функцию для создания базовой таблицы данных _data*/
+createTable(_data, _rows, _columns, _hidden_columns);
+  	
+/*Создаём массив, содержащий актуальные на данный момент метки фильтров*/
+var _all_filters_marks = ['t','v','a','c','il','ih','g'/*,'e','m','01a','03a','05a','07a','10a','13a'*/,'f','po','ps','pf','pd'//,'rus','eng','ukr','le','su','co','fa','un','00h','02h','16h','40h','99h','gap','oop','fup','par','alo','fri','yes','no'
+									];	
+
+</script>
+
+
+</body>
+
+</html>

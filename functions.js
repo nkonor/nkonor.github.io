@@ -1,5 +1,18 @@
 ﻿/*Библиотека функций для работы с таблицой данных*/
 
+/*Место для полифилов*/
+
+/*Для метода remove()*/
+if (!('remove' in Element.prototype)) {
+    Element.prototype.remove = function() {
+        if (this.parentNode) {
+            this.parentNode.removeChild(this);
+        }
+    };
+}
+
+/*Окончания блока полифилов*/
+
 /*Функция для построения базовой таблицы данных*/
 function createTable($data, $rows, $columns, $hidden_columns) {
   		var	$data,

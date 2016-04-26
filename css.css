@@ -1,0 +1,91 @@
+/* Стили*/
+div{
+	background-color: ;
+	width: auto;
+	margin: auto;
+}
+
+.sblock1 {
+	//width: auto;
+	margin: auto;
+	text-align: center;
+	padding-left: 10px;
+
+	padding-right: 10px;
+}
+
+/*ul{
+	/*width: 60%;*/
+
+	/*margin: auto;*/
+
+	list-style: none;
+
+}
+
+li{
+		
+	border-style: solid;
+
+	border-color: black;
+
+	display: inline-block;
+		
+	padding: 5px 5px 5px 5px;
+	
+}*/
+
+ul{
+		
+	margin: 0;
+		
+	padding: 0;
+		
+	list-style: none;
+
+	text-align: center;
+
+	}
+	
+li{
+		
+	display: inline-block;
+	
+}
+
+	
+li a{
+		
+	display: block; /* Ссылка как блочный элемент */
+	    	
+	padding: 10px; /* Поля вокруг надписи */
+	    
+	text-decoration: none; /* Подчеркивание у ссылок убираем */
+	    
+	color: #666; /* Цвет текста */
+		
+	border: 3px solid #ccc;/* Рамка вокруг пунктов меню */
+	    		background-color: #ffffff; /* Цвет фона */
+	    
+	//border-bottom: none; /* Границу снизу не проводим */
+	
+}
+
+	
+li a:hover {
+	    
+	color: #ffffff; /* Цвет текста активного пункта */
+	    
+	background-color: #CCCCCC; /*Цвет фона активного пункта */
+   	
+   	//border: 3px solid #ffffff;/* Рамка вокруг пунктов меню */
+	
+}
+
+.putA {
+	    
+	color: #ffe; /* Цвет текста активного пункта */
+	    
+	background-color: #CCCCCC; /*Цвет фона активного пункта */
+   	
+}

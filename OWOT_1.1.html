@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>OneWeekOneThing</title>
+        <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+
+<body>
+
+<!-- //Организовываем ввод и получение даты -->
+<table border="1">
+<p>
+<tr>
+<td>
+<div>
+<input type="date" name="Date1" id="Date1" maxlength="2" required>
+
+<script type="text/javascript">
+	Date1.onchange = function UseDate (e) {
+		d = new Date (this.value);
+		console.log (d);
+		if (d=="Invalid Date") {alert("Вы ввели чепушню!");}
+		//ready1 = 1;
+		CalculationNewData ();
+	}
+</script>
+</div>
+</td>
+<!-- Организовываем ввод и получение необходимого действия (плюс или минус) -->
+<td>
+<div>
+<input type="radio" name="Action1" id="Action1" value="1"> Плюс+
+<script type="text/javascript">
+	Action1.onclick = function UseAction1 (e) {
+		action	= this.value;
+		console.log (action);
+		//ready2 = 1;
+		CalculationNewData ();
+	}
+</script>
+
+<input type="radio" name="Action1" id="Action2" value="0"> Минус- 
+<script type="text/javascript">
+	Action2.onclick = function UseAction1 (e) {
+		action	= this.value;
+		console.log (action);
+		//ready2 = 1;
+		CalculationNewData ();
+	}
+</script>
+</div>
+</td>
+
+<!-- Организовываем ввод и получение количества дней -->
+
+<td>
+<div>
+	<input type="text" name="Namber1" id="Namber1" required>
+</div>
+
+<script type="text/javascript">
+	Namber1.onchange = function UseDate (e) {
+		namber1 = this.value;
+		console.log (namber1);
+		//ready3 = 1;
+		CalculationNewData ();
+	}
+</script>
+
+
+</td>
+</tr>
+</table>
+
+<table border="1">
+<p>
+<tr id="answer">
+</tr>
+</table>
+<!-- Производим вычисление новой даты -->
+<script type="text/javascript">
+	function CalculationNewData () {
+		
+		if (d != "is not defined") {
+			if (action != "is not defined") {
+				if (namber1 != "is not defined") GoGoGo ();
+				}
+		}
+		
+
+		function GoGoGo () {
+			namber1 = parseInt(namber1,10);
+			answer = new Date (d);
+		
+				if (action==1) {
+					answer.setDate(answer.getDate()+namber1);	
+				}	 
+				else {
+					answer.setDate(answer.getDate()-namber1);
+				}
+		}
+		console.log(answer);
+
+	//Создаём элемент для вывода ответа
+	var answerView = document.getElementById("answer");
+	answerView.innerHTML = answer.toDateString();
+	}
+</script>
+
+</body>

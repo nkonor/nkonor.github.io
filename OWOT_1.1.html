@@ -4,6 +4,19 @@
 
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+			textarea {
+	    		resize: none; /* Запрещаем изменять размер */
+	   		} 
+   			table {
+			    width: 300px; /* Ширина таблицы */
+			    
+			    margin: auto; /* Выравниваем таблицу по центру окна  */
+			}
+			td {
+				text-align: center; /* Выравниваем текст по центру ячейки */
+			}
+  		</style>
         <title>OneWeekOneThing</title>
         <link rel="stylesheet" type="text/css" href="css.css">
 </head>
@@ -11,103 +24,116 @@
 <body>
 
 <!-- //Организовываем ввод и получение даты -->
-<table border="1">
+<table border=0>
 <p>
 <tr>
 <td>
-<div>
 <input type="date" name="Date1" id="Date1" maxlength="2" required>
 
 <script type="text/javascript">
 	Date1.onchange = function UseDate (e) {
 		d = new Date (this.value);
-		console.log (d);
+		console.log ('Первый параметр: '+d);
 		if (d=="Invalid Date") {alert("Вы ввели чепушню!");}
-		//ready1 = 1;
+		ready1 = 1; /*Для проверки ввода значения*/
 		CalculationNewData ();
 	}
 </script>
-</div>
 </td>
+
 <!-- Организовываем ввод и получение необходимого действия (плюс или минус) -->
-<td>
-<div>
-<input type="radio" name="Action1" id="Action1" value="1"> Плюс+
+<td nowrap width="85">
+<input type="radio" name="Action1" id="Action1" value="1"> <big>+</big>
 <script type="text/javascript">
 	Action1.onclick = function UseAction1 (e) {
 		action	= this.value;
 		console.log (action);
-		//ready2 = 1;
+		ready2 = 1; /*Для проверки ввода значения*/
 		CalculationNewData ();
 	}
 </script>
-
-<input type="radio" name="Action1" id="Action2" value="0"> Минус- 
+</td>
+<td nowrap width="85">
+<input type="radio" name="Action1" id="Action2" value="0"> <big>−</big>
 <script type="text/javascript">
 	Action2.onclick = function UseAction1 (e) {
 		action	= this.value;
 		console.log (action);
-		//ready2 = 1;
+		ready2 = 1; /*Для проверки ввода значения*/
 		CalculationNewData ();
 	}
 </script>
-</div>
 </td>
 
 <!-- Организовываем ввод и получение количества дней -->
-
 <td>
-<div>
-	<input type="text" name="Namber1" id="Namber1" required>
-</div>
+	<input type="text" name="Namber1" id="Namber1" required placeholder="Количество дней">
 
 <script type="text/javascript">
 	Namber1.onchange = function UseDate (e) {
 		namber1 = this.value;
 		console.log (namber1);
-		//ready3 = 1;
+		ready3 = 1; /*Для проверки ввода значения*/
 		CalculationNewData ();
 	}
 </script>
-
-
 </td>
 </tr>
 </table>
 
-<table border="1">
-<p>
-<tr id="answer">
-</tr>
+<table border="0">
+	<p>
+	<tr>
+		<td>
+		<textarea cols=79 rows=2 maxlength=170 placeholder='Название договора/контракта/проекта ...'></textarea>
+		</td>
+	</tr>
 </table>
+
+<table border="0">
+	<tr >
+		<td>
+			<textarea cols=55 rows=2 maxlength=120 placeholder='Наименование расчётной даты ...'></textarea>
+		</td>
+		<td >
+			<textarea id="answer" cols=20 rows=2 placeholder='Расчётная дата ...'></textarea>
+		</td>
+	</tr>
+</table>
+
 <!-- Производим вычисление новой даты -->
 <script type="text/javascript">
+ready1 = 0;
+ready2 = 0;
+ready3 = 0;	
+//answerView = document.getElementById("answer");
+
 	function CalculationNewData () {
-		
-		if (d != "is not defined") {
-			if (action != "is not defined") {
-				if (namber1 != "is not defined") GoGoGo ();
-				}
-		}
-		
+		ready = ready1+ready2+ready3; /*Если все три значения введены то запускаем расчёт*/
+		if (ready == 3) GoGoGo();
+		console.log(ready1,ready2,ready3);
 
 		function GoGoGo () {
 			namber1 = parseInt(namber1,10);
 			answer = new Date (d);
-		
-				if (action==1) {
-					answer.setDate(answer.getDate()+namber1);	
-				}	 
-				else {
-					answer.setDate(answer.getDate()-namber1);
+			
+			if (action==1) {
+				answer.setDate(answer.getDate()+namber1);	
+			}	 
+			else {
+				answer.setDate(answer.getDate()-namber1);
 				}
-		}
-		console.log(answer);
+			console.log(answer);
+		
+			//Конвертируем в строку, русифицируем и форматируем полученную дату	
+			answerRus = answer.toLocaleString('ru',{year:'numeric',month:'long',day:'numeric'});
 
-	//Создаём элемент для вывода ответа
-	var answerView = document.getElementById("answer");
-	answerView.innerHTML = answer.toDateString();
+			//Создаём элемент для вывода ответа
+			answerView = document.getElementById("answer");
+			answerView.innerHTML = answerRus;
+		}
 	}
+
 </script>
 
 </body>

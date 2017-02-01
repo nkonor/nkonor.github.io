@@ -24,10 +24,10 @@
 <body>
 
 <!-- //Организовываем ввод и получение даты -->
-<table border=0>
+<table border=0 id="toRemove">
 <p>
 <tr>
-<td>
+<td >
 <input type="date" name="Date1" id="Date1" maxlength="2" required>
 
 <script type="text/javascript">
@@ -42,7 +42,7 @@
 </td>
 
 <!-- Организовываем ввод и получение необходимого действия (плюс или минус) -->
-<td nowrap width="85">
+<td nowrap width="85" id="">
 <input type="radio" name="Action1" id="Action1" value="1"> <big>+</big>
 <script type="text/javascript">
 	Action1.onclick = function UseAction1 (e) {
@@ -54,7 +54,7 @@
 </script>
 </td>
 <td nowrap width="85">
-<input type="radio" name="Action1" id="Action2" value="0"> <big>−</big>
+<input type="radio" name="Action2" id="Action2" value="0"> <big>−</big>
 <script type="text/javascript">
 	Action2.onclick = function UseAction1 (e) {
 		action	= this.value;
@@ -135,5 +135,27 @@ ready3 = 0;
 	}
 
 </script>
+<script type="text/javascript">
+	
+	function printView () {
+		toRemove.remove();
+		toRemove1.remove();
+		window.print();
+		window.onclick = function ReLoad() {
+			location.reload();
+		}
+
+	}
+ 
+</script>
+
+<table id="toRemove1">
+	<tr>
+		<td>
+		<input type="button" value="Печать документа документа" onClick=printView()>
+		</td>
+	</tr>	
+</table>
+
 
 </body>
